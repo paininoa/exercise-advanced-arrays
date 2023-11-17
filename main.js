@@ -5,17 +5,24 @@ Inoltre, la funzione dovrebbe stampare in console se l'analisi è stata un succe
 */
 
 /*
-NOT WORKING!
-const stringaJson = `["pomodori", "carne", "latte", "funghi", "cereali"]`;
+const safeParseJSON = (stringa) => {
+  try {
+    const obj = JSON.parse(stringa);
+    console.log("Analisi riuscita");
+    return obj;
+  } catch (error) {
+    console.warn("Analisi non riuscita");
+    return null;
+  }
+};
 
-const safeParseJSON = JSON.parse(stringaJson);
-if (!safeParseJSON) {
-  stringaJson = null;
-  throw new Error(stringaJson);
-  console.log("Error");
-} else {
-  console.log("Success");
-}
+const stringaJson = `{
+  "name": "tizio",
+  "age": 21
+}`;
+
+const result = safeParseJSON(stringaJson);
+console.log(result);
 */
 
 /*
@@ -24,13 +31,16 @@ ogni elemento utilizzando il metodo .forEach().
 */
 
 /*
-const array = ["pomodori", "carne", "latte", "funghi", "cereali"];
+const array = [1, 2, 3, 4, 5, 6];
 
-const logElements = (item) => {
+const logElements = (array) => {
+  array.forEach((elem) => {
+    console.log(elem);
+  });
   console.log(item);
 };
 
-array.forEach(logElements);
+logElements(array);
 */
 
 /*
@@ -41,16 +51,19 @@ Altrimenti, restituisci il risultato della divisione.
 
 /*
 const divide = (dividendo, divisore) => {
-  if (divisore === 0) {
-    throw new Error("Impossibile dividere per zero");
-    console.log(Error);
-  } else {
-    const result = dividendo / divisore;
-    console.log(result);
+  try {
+    if (divisore === 0) {
+      throw new Error("Impossibile dividere per zero");
+    }
+    return dividendo / divisore;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };
 
-divide(10, 0);
+const test = divide(10, 0);
+console.log(test);
 */
 
 /*
@@ -61,24 +74,22 @@ genera un errore indicando a quale indice si trova il valore non numerico.
 */
 
 /*
-const array = [23, 5, 6, 75, 3, 5, 3, 0];
+const processNumbers = (array) => {
+  array.forEach((elem, i) => {
+    const verisonNum = Number(elem);
 
-const processNumbers = () => {
-  for (let i = 0; i < array.length; i++) {
-    let item = array[i];
-    console.log(item);
-
-    if (typeof value === number) {
-      let result = array[i] * array[i];
-
-      console.log(result);
-    } else {
-      throw new Error(array[i]);
-      console.log(Error);
+    if (typeof verisonNum !== "number" || isNaN(verisonNum)) {
+      throw new Error(`The element at index ${i} is not a number`);
     }
-  }
+  });
+
+  const squareNumbers = array.map((n) => n ** 2);
+  return squareNumbers;
 };
-processNumbers(array);
+
+const numbers = [23, 5, 6, 75, 3, "piero", 3, 0];
+const test = processNumbers(numbers);
+console.log(test);
 */
 
 /*
@@ -88,5 +99,25 @@ originale e il suo indice, formattato come "Elemento [indice]: [elemento]".
 */
 
 /*
-6. Crea una funzione removeShortWords che prende un array di stringhe e una lunghezza minima. Dovrebbe restituire un nuovo array contenente solo le stringhe che sono più lunghe della lunghezza minima. Usa .filter() e assicurati che la funzione non tenga conto delle maiuscole e minuscole.
+const mapWithIndex = (array) => {
+  const newArray = array.map((element, i) => `Element [${i}]: ${element}`);
+  return newArray;
+};
+
+console.log(mapWithIndex([20, 55, 34]));
 */
+
+/*
+6. Crea una funzione removeShortWords che prende un array di stringhe e 
+una lunghezza minima. Dovrebbe restituire un nuovo array contenente solo 
+le stringhe che sono più lunghe della lunghezza minima. Usa .filter().
+*/
+
+const removeShortWords = (array, minLength) => {
+  const filteredArray = array.filter((stringa) => stringa.length > minLength);
+  return filteredArray;
+};
+
+const testArray = ["verde", "giallo", "seg", "gesargheq"];
+const risultato = removeShortWords(testArray, 4);
+console.log(risultato);
