@@ -231,6 +231,30 @@ const persone = [
   { id: 3, name: "Charlie", age: 28 },
 ];
 
+window.addEventListener("load", () => {
+  const displayUsersByAge = persone.sort((a, b) => {
+    if (a.age < b.age) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  console.log(displayUsersByAge);
+
+  const body = document.body;
+  const table = document.createElement("table");
+  body.appendChild(table);
+
+  table.innerHTML += `<tr><th>NAME</th><th>AGE</th></tr>`;
+
+  displayUsersByAge.forEach((persona) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${persona.name}</td>`;
+    tr.innerHTML += `<td>${persona.age}</td>`;
+    table.appendChild(tr);
+  });
+});
+
 /*
    4. Filtro e Ordinamento di Prodotti
    - JSON di partenza: `[{ id: 1, name: "Laptop", price: 999.99 }, { id: 2, name: "Smartphone", price: 599.99 }, { id: 3, name: "Tablet", price: 399.99 }]`
