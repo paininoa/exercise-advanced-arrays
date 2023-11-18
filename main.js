@@ -316,6 +316,7 @@ window.addEventListener("load", () => {
    CSS `visited` agli elementi che rappresentano i POI già visitati.
 */
 
+/*
 const POI = [
   { id: 1, name: "Eiffel Tower", location: "Paris", visited: true },
   { id: 2, name: "Colosseum", location: "Rome", visited: false },
@@ -331,8 +332,6 @@ window.addEventListener("load", () => {
         return -1;
       }
     });
-
-    const addVisitedClass = console.log(orderedPOI);
 
     const body = document.body;
     const ul = document.createElement("ul");
@@ -351,9 +350,45 @@ window.addEventListener("load", () => {
 
   createPOIList(POI);
 });
+*/
 
 /*
    6. Classifica e Mostra Risultati di Gare
    - JSON di partenza: `[{ id: 1, name: "John Doe", time: "00:23:15" }, { id: 2, name: "Jane Smith", time: "00:22:05" }, { id: 3, name: "Emily Davis", time: "00:25:30" }]`
-   - Esercizio: Implementa una funzione `displayRaceResults` che prende un array di risultati di gare e li ordina in base al tempo di completamento (dal più veloce al più lento). La funzione dovrebbe poi creare una lista `<ul>` nel DOM, dove ogni elemento `<li>` mostra il nome del partecipante e il suo tempo di gara.
+   
+   - Esercizio: Implementa una funzione `displayRaceResults` che 
+   prende un array di risultati di gare e li ordina in base al tempo 
+   di completamento (dal più veloce al più lento). La funzione dovrebbe 
+   poi creare una lista `<ul>` nel DOM, dove ogni elemento `<li>` mostra 
+   il nome del partecipante e il suo tempo di gara.
 */
+
+const raceResults = [
+  { id: 1, name: "John Doe", time: "00:23:15" },
+  { id: 2, name: "Jane Smith", time: "00:22:05" },
+  { id: 3, name: "Emily Davis", time: "00:25:30" },
+];
+
+window.addEventListener("load", () => {
+  const displayRaceResults = (results) => {
+    const orderedResults = results.sort((time1, time2) => {
+      if (time1.time > time2.time) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+
+    const body = document.body;
+    const ul = document.createElement("ul");
+    body.appendChild(ul);
+
+    orderedResults.forEach((result) => {
+      const li = document.createElement("li");
+      li.innerText = `${result.name}: ${result.time}`;
+      ul.appendChild(li);
+    });
+  };
+
+  displayRaceResults(raceResults);
+});
