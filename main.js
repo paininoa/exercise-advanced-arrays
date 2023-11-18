@@ -308,8 +308,49 @@ window.addEventListener("load", () => {
 /*
 5. Genera un Elenco di Punti di Interesse
    - JSON di partenza: `[{ id: 1, name: "Eiffel Tower", location: "Paris", visited: true }, { id: 2, name: "Colosseum", location: "Rome", visited: false }, { id: 3, name: "Statue of Liberty", location: "New York", visited: true }]`
-   - Esercizio: Scrivi una funzione `createPOIList` che prende un array di punti di interesse (POI) e genera un elenco nel DOM. I POI dovrebbero essere ordinati alfabeticamente per nome e ogni elemento dell'elenco dovrebbe includere il nome del POI e la sua posizione. Aggiungi una classe CSS `visited` agli elementi che rappresentano i POI già visitati.
+  
+   - Esercizio: Scrivi una funzione `createPOIList` che prende un array 
+   di punti di interesse (POI) e genera un elenco nel DOM. I POI dovrebbero 
+   essere ordinati alfabeticamente per nome e ogni elemento dell'elenco 
+   dovrebbe includere il nome del POI e la sua posizione. Aggiungi una classe 
+   CSS `visited` agli elementi che rappresentano i POI già visitati.
 */
+
+const POI = [
+  { id: 1, name: "Eiffel Tower", location: "Paris", visited: true },
+  { id: 2, name: "Colosseum", location: "Rome", visited: false },
+  { id: 3, name: "Statue of Liberty", location: "New York", visited: true },
+];
+
+window.addEventListener("load", () => {
+  const createPOIList = (points) => {
+    const orderedPOI = POI.sort((point1, point2) => {
+      if (point1.name > point2.name) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+
+    const addVisitedClass = console.log(orderedPOI);
+
+    const body = document.body;
+    const ul = document.createElement("ul");
+    body.appendChild(ul);
+
+    orderedPOI.forEach((point) => {
+      const li = document.createElement("li");
+
+      if (point.visited === true) {
+        li.className = "visited";
+      }
+      li.innerText = `${point.name}, ${point.location}`;
+      ul.appendChild(li);
+    });
+  };
+
+  createPOIList(POI);
+});
 
 /*
    6. Classifica e Mostra Risultati di Gare
