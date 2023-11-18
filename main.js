@@ -225,6 +225,7 @@ window.addEventListener("load", () => {
     rappresentano gli utenti, mostrando il nome e l'età.
 */
 
+/*
 const persone = [
   { id: 1, name: "Alice", age: 30 },
   { id: 2, name: "Bob", age: 24 },
@@ -239,7 +240,6 @@ window.addEventListener("load", () => {
       return 1;
     }
   });
-  console.log(displayUsersByAge);
 
   const body = document.body;
   const table = document.createElement("table");
@@ -254,12 +254,54 @@ window.addEventListener("load", () => {
     table.appendChild(tr);
   });
 });
+*/
 
 /*
    4. Filtro e Ordinamento di Prodotti
    - JSON di partenza: `[{ id: 1, name: "Laptop", price: 999.99 }, { id: 2, name: "Smartphone", price: 599.99 }, { id: 3, name: "Tablet", price: 399.99 }]`
-   - Esercizio: Crea una funzione `filterAndSortProducts` che prende un array di prodotti e un prezzo massimo. La funzione dovrebbe filtrare i prodotti che hanno un prezzo inferiore o uguale al prezzo massimo, ordinarli per prezzo in ordine crescente e visualizzare i risultati in una lista `<ul>` nel DOM, mostrando il nome e il prezzo di ciascun prodotto.
+   
+   - Esercizio: Crea una funzione `filterAndSortProducts` che prende un 
+   array di prodotti e un prezzo massimo. La funzione dovrebbe filtrare 
+   i prodotti che hanno un prezzo inferiore o uguale al prezzo massimo, 
+   ordinarli per prezzo in ordine crescente e visualizzare i risultati in
+   una lista `<ul>` nel DOM, mostrando il nome e il prezzo di ciascun prodotto.
 */
+
+const productList = [
+  { id: 1, name: "Laptop", price: 999.99 },
+  { id: 2, name: "Smartphone", price: 599.99 },
+  { id: 3, name: "Tablet", price: 399.99 },
+  { id: 4, name: "Hadphones", price: 499.99 },
+];
+
+window.addEventListener("load", () => {
+  const filterAndSortProducts = (products, maxPrice) => {
+    const filteredList = productList.filter(
+      (product) => product.price <= maxPrice
+    );
+
+    const orderedList = filteredList.sort((a, b) => {
+      if (a.price < b.price) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    console.log(orderedList);
+
+    const body = document.body;
+    const ul = document.createElement("ul");
+    body.appendChild(ul);
+    orderedList.forEach((product) => {
+      const li = document.createElement("li");
+      li.innerText = `${product.name}, ${product.price}`;
+      ul.appendChild(li);
+    });
+  };
+
+  filterAndSortProducts(productList, 600);
+});
 
 /*
 5. Genera un Elenco di Punti di Interesse
