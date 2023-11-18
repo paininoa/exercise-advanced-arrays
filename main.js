@@ -267,6 +267,7 @@ window.addEventListener("load", () => {
    una lista `<ul>` nel DOM, mostrando il nome e il prezzo di ciascun prodotto.
 */
 
+/*
 const productList = [
   { id: 1, name: "Laptop", price: 999.99 },
   { id: 2, name: "Smartphone", price: 599.99 },
@@ -302,6 +303,7 @@ window.addEventListener("load", () => {
 
   filterAndSortProducts(productList, 600);
 });
+*/
 
 /*
 5. Genera un Elenco di Punti di Interesse
